@@ -14,7 +14,7 @@ int main()
         cout<<qu.front()<<" ";
         qu.pop();
     }
-} // PROB A
+} // PROB A 조세푸스순열
 #include<bits/stdc++.h>
 using namespace std;
 int main()
@@ -34,7 +34,7 @@ int main()
         }
         cout<<"\n";
     }
-} // PROB B
+} // PROB B chemoon100의 취미 
 #include<bits/stdc++.h>
 #define ll long long int
 using namespace std;
@@ -51,7 +51,7 @@ int main()
         qu.push((x*m)%mod);
     }
     cout<<qu.front()%mod;
-} // PROB C
+} // PROB C 숫자생성머신
 #include<bits/stdc++.h>
 using namespace std;
 int main()
@@ -81,4 +81,4 @@ int main()
     for (int i=1;i<=n;i++){
         cout<<dist[i]<<" ";
     }
-} // PROB D
+} // PROB D 백신(1차원)

@@ -42,6 +42,56 @@ int main()
 
 #include<bits/stdc++.h>
 using namespace std;
+bool inrange(int x,int y,int h,int w)
+{
+    if (x>=1 && x<=h && y>=1 && y<=w) return true;
+    else return false;
+}
+int main()
+{
+    int h,w,sx,sy,fx,fy;
+    int dx[4]={-1,0,0,1},dy[4]={0,-1,1,0};
+    cin>>h>>w;
+    vector<vector<char>> mp(h+1,vector<char>(w+1));
+    vector<vector<int>> dist(h+1,vector<int>(w+1,-1));
+    queue<pair<int,int>> qu;
+    for (int i=1;i<=h;i++){
+        for (int j=1;j<=w;j++){
+            cin>>mp[i][j];
+            if (mp[i][j]=='S'){
+                sx=i;
+                sy=j;
+            }
+            else if (mp[i][j]=='G'){
+                fx=i;
+                fy=j;
+            }
+        }
+    }
+    dist[sx][sy]=0;
+    qu.push({sx,sy});
+    while(!qu.empty()){
+        int curx=qu.front().first;
+        int cury=qu.front().second;
+        if (curx==fx && cury==fy){
+            break;
+        }
+        qu.pop();
+        for (int i=0;i<4;i++){
+            int newx=curx+dx[i];
+            int newy=cury+dy[i];
+            if (inrange(newx,newy,h,w) && (mp[newx][newy]=='G' || mp[newx][newy]=='.') && dist[newx][newy]==-1){
+                qu.push({newx,newy});
+                dist[newx][newy]=dist[curx][cury]+1;
+            }
+        }
+    }
+    cout<<dist[fx][fy];
+} // PROB O 미로찾기 (Large)
+
+
+#include<bits/stdc++.h>
+using namespace std;
 bool inrange(int x,int y,int n,int m)
 {
     if (x>=1 && x<=n && y>=1 && y<=m) return true;

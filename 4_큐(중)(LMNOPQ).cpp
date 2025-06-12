@@ -40,3 +40,42 @@ int main()
 } // PROB N 백신(2차원)
 
 
+#include<bits/stdc++.h>
+using namespace std;
+bool inrange(int x,int y,int n,int m)
+{
+    if (x>=1 && x<=n && y>=1 && y<=m) return true;
+    else return false;
+}
+int main()
+{
+    int n,m,x,y;
+    int dx[8]={-2,-2,-1,-1,1,1,2,2};
+    int dy[8]={-1,1,-2,2,-2,2,-1,1};
+    cin>>n>>m;
+    cin>>x>>y;
+    vector<vector<int>> dist(n+1,vector<int>(m+1,-1));
+    queue<pair<int,int>> qu;
+    dist[x][y]=0;
+    qu.push({x,y});
+    while(!qu.empty()){
+        int curx=qu.front().first;
+        int cury=qu.front().second;
+        qu.pop();
+        for (int i=0;i<8;i++){
+            int newx=curx+dx[i];
+            int newy=cury+dy[i];
+            if (inrange(newx,newy,n,m) && dist[newx][newy]==-1){
+                qu.push({newx,newy});
+                dist[newx][newy]=dist[curx][cury]+1;
+            }
+        }
+    }
+    for (int i=1;i<=n;i++){
+        for (int j=1;j<=m;j++){
+            cout<<dist[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+} // PROB P 나이트의 이동
+

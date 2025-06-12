@@ -15,6 +15,8 @@ int main()
         qu.pop();
     }
 } // PROB A 조세푸스순열
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int main()
@@ -35,6 +37,8 @@ int main()
         cout<<"\n";
     }
 } // PROB B chemoon100의 취미 
+
+
 #include<bits/stdc++.h>
 #define ll long long int
 using namespace std;
@@ -52,6 +56,8 @@ int main()
     }
     cout<<qu.front()%mod;
 } // PROB C 숫자생성머신
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int main()

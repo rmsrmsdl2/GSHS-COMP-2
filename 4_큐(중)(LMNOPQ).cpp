@@ -129,3 +129,38 @@ int main()
     }
 } // PROB P 나이트의 이동
 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int cur,target,n;
+    int d[8]={1,10,100,1000,-1,-10,-100,-1000};
+    cin>>cur>>target;
+    cin>>n;
+    vector<int> dist(10000,-1);
+    vector<int> ban(10000,false);
+    queue<int> qu;
+    for (int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        ban[x]=true;
+    }
+    qu.push(cur);
+    dist[cur]=0;
+    while(!qu.empty()){
+        int x=qu.front();
+        if (x==target){
+            break;
+        }
+        qu.pop();
+        for (int i=0;i<8;i++){
+            int newx=(x+d[i]+10000)%10000;
+            if (dist[newx]==-1 && !ban[newx]){
+                dist[newx]=dist[x]+1;
+                qu.push(newx);
+            }
+        }
+    }
+    cout<<dist[target];
+} // PROB Q 다이얼 비밀번호

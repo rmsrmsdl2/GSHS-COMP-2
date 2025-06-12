@@ -1,5 +1,39 @@
 #include<bits/stdc++.h>
 using namespace std;
+int main()
+{
+    int n,m,k;
+    cin>>n>>m>>k;
+    if (n+1==k){
+        int ans=0;
+        queue<int> qu;
+        qu.push(1);
+        while(!qu.empty() && (n>0||m>0)){
+            int s=qu.size();
+            for (int i=0;i<s;i++){
+                qu.pop();
+                if (n>0){
+                    qu.push(1);
+                    qu.push(1);
+                    n--;
+                }
+                else if (m>0){
+                    qu.push(1);
+                    m--;
+                }
+            }
+            ans++;
+        }
+        cout<<ans;
+    }
+    else{
+        cout<<"impossible.";
+    }
+} // PROB L Binary Tree
+
+
+#include<bits/stdc++.h>
+using namespace std;
 bool inrange(int x,int y,int n,int m)
 {
     if (x>=1 && x<=n && y>=1 && y<=m) return true;

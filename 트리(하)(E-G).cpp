@@ -17,6 +17,8 @@ int main()
     }
     pre(1);
 } // PROB E 이진트리의 전위순회 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int n;
@@ -27,7 +29,7 @@ void in(int node)
     in(2*node);
     cout<<s[node]<<" ";
     in(2*node+1);
-} // PROB F 이진트리의 중위순회 
+}
 int main()
 {
     cin>>n;
@@ -35,7 +37,9 @@ int main()
         cin>>s[i];
     }
     in(1);
-} // PROB F
+} // PROB F 이진트리의 중위순회 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int n;

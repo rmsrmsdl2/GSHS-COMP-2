@@ -1,1 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool inrange(int x,int y,int n,int m)
+{
+    if (x>=1 && x<=n && y>=1 && y<=m) return true;
+    else return false;
+}
+int main()
+{
+    int n,m,k;
+    int dx[4]={-1,0,0,1},dy[4]={0,-1,1,0};
+    cin>>n>>m>>k;
+    vector<vector<int>> dist(n+1,vector<int>(m+1,-1));
+    queue<pair<int,int>> qu;
+    while(k--){
+        int x,y;
+        cin>>x>>y;
+        dist[x][y]=1;
+        qu.push({x,y});
+    }
+    while(!qu.empty()){
+        int curx=qu.front().first;
+        int cury=qu.front().second;
+        qu.pop();
+        for (int i=0;i<4;i++){
+            int newx=curx+dx[i];
+            int newy=cury+dy[i];
+            if (inrange(newx,newy,n,m) && dist[newx][newy]==-1){
+                qu.push({newx,newy});
+                dist[newx][newy]=dist[curx][cury]+1;
+            }
+        }
+    }
+    for (int i=1;i<=n;i++){
+        for (int j=1;j<=n;j++){
+            cout<<dist[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+} // PROB N 백신(2차원)
+
 

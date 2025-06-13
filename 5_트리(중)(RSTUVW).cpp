@@ -61,3 +61,53 @@ int main()
         cout<<path[i]<<"\n";
     }
 } // PROB V 보물 찾기 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int n,cnt=0;
+int dx[4]={-1,0,0,1},dy[4]={0,-1,1,0};
+vector<vector<int>> cave(31,vector<int>(31));
+vector<int> siz;
+bool inrange(int x,int y)
+{
+    if (x>=0 && x<n && y>=0 && y<n) return true;
+    else return false;
+}
+void dfs (int x,int y)
+{
+    cave[x][y]=0;
+    cnt++;
+    for (int i=0;i<4;i++){
+        int nx=x+dx[i];
+        int ny=y+dy[i];
+        if (inrange(nx,ny) && cave[nx][ny]==1){
+            dfs(nx,ny);
+        }
+    }
+}
+int main()
+{
+    cin>>n;
+    for (int i=0;i<n;i++){
+        string s;
+        cin>>s;
+        for (int j=0;j<n;j++){
+            cave[i][j]=s[j]-'0';
+        }
+    }
+    for (int i=0;i<n;i++){
+        for (int j=0;j<n;j++){
+            if (cave[i][j]==1){
+                dfs(i,j);
+                siz.push_back(cnt);
+                cnt=0;
+            }
+        }
+    }
+    sort(siz.begin(),siz.end());
+    cout<<siz.size()<<"\n";
+    for (int i=0;i<siz.size();i++){
+        cout<<siz[i]<<"\n";
+    }
+} // PROB W 두더지굴

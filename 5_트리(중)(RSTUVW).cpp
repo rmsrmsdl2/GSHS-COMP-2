@@ -34,3 +34,30 @@ int main()
     cin>>h>>n;
     f(1,int(pow(2,h)),h);
 } // PROB U 포화이진트리 (Perfect Binary Tree)의 중위순회
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int p,ns,t;
+    cin>>p>>ns>>t;
+    vector<int> par(p+1);
+    vector<int> path;
+    par[1]=-1;
+    while(ns--){
+        int x,y,z;
+        cin>>x>>y>>z;
+        par[y]=x;
+        par[z]=x;
+    }
+    int cur=t;
+    while(cur!=-1){
+        path.push_back(cur);
+        cur=par[cur];
+    }
+    cout<<path.size()<<"\n";
+    for (int i=path.size()-1;i>=0;i--){
+        cout<<path[i]<<"\n";
+    }
+} // PROB V 보물 찾기 

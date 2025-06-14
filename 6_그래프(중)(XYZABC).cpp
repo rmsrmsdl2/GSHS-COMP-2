@@ -63,3 +63,48 @@ int main()
     }
     cout<<ans;
 } // PROB Z 트리의 깊이우선탐색의 개수 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int w,h,s1,s2,g1,g2,ans=0;
+int oddx[3]={-1,0,1},oddy[3]={1,1,0};
+int evenx[3]={0,1,1},eveny[3]={1,1,0};
+bool inrange(int x,int y)
+{
+    if (y%2==1){
+        if (x>=1 && x<=w && y>=1 && y<=h) return true;
+        else return false;
+    }
+    else{
+        if (x>=1 && x<w && y>=1 && y<=h) return true;
+        else return false;
+    }
+}
+void dfs(int x,int y)
+{
+    if (x==g1 && y==g2){
+        ans++;
+        return;
+    }
+    if (!inrange(x,y)) return;
+    for (int i=0;i<3;i++){
+        if (y%2==1){
+            int nx=x+oddx[i];
+            int ny=y+oddy[i];
+            dfs(nx,ny);
+        }
+        else{
+            int nx=x+evenx[i];
+            int ny=y+eveny[i];
+            dfs(nx,ny);
+        }
+    }
+}
+int main()
+{
+    cin>>w>>h;
+    cin>>s1>>s2>>g1>>g2;
+    dfs(s1,s2);
+    cout<<ans;
+} // PROB AA 담벼락 이동하기

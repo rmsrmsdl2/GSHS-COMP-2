@@ -34,6 +34,37 @@ int main()
 
 #include<bits/stdc++.h>
 using namespace std;
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<int> oper(m+1);
+    vector<int> endtime(n+1,0);
+    vector<vector<int>> res(n+1);
+    for (int i=1;i<=m;i++){
+        cin>>oper[i];
+    }
+    for (int i=1;i<=m;i++){
+        int pick=1;
+        for (int j=2;j<=n;j++){
+            if (endtime[j]<endtime[pick]){
+                pick=j;
+            }
+        }
+        endtime[pick]+=oper[i];
+        res[pick].push_back(i);
+    }
+    for (int i=1;i<=n;i++){
+        for (auto x:res[i]){
+            cout<<x<<" ";
+        }
+        cout<<"\n";
+    }
+} // PROB M 문백은행 
+
+
+#include<bits/stdc++.h>
+using namespace std;
 bool inrange(int x,int y,int n,int m)
 {
     if (x>=1 && x<=n && y>=1 && y<=m) return true;

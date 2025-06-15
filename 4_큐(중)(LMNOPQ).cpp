@@ -138,9 +138,6 @@ int main()
     while(!qu.empty()){
         int curx=qu.front().first;
         int cury=qu.front().second;
-        if (curx==fx && cury==fy){
-            break;
-        }
         qu.pop();
         for (int i=0;i<4;i++){
             int newx=curx+dx[i];

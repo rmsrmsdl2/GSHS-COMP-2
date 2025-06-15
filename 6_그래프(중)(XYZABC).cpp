@@ -108,3 +108,50 @@ int main()
     dfs(s1,s2);
     cout<<ans;
 } // PROB AA 담벼락 이동하기
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int n,ans=0;
+string comp="gshs";
+vector<vector<char>> mp(1001,vector<char>(1001));
+int dx[8]={-1,-1,-1,0,0,1,1,1};
+int dy[8]={-1,0,1,-1,1,-1,0,1};
+bool inrange(int x,int y)
+{
+    if (x>=0 && x<n && y>=0 && y<n) return true;
+    else return false;
+}
+void dfs(int x,int y,int len,int dir)
+{
+    if (len==4){
+        ans++;
+        return;
+    }
+    int nx=x+dx[dir];
+    int ny=y+dy[dir];
+    if (inrange(nx,ny) && mp[nx][ny]==comp[len]){
+        dfs(nx,ny,len+1,dir);
+    }
+}
+int main()
+{
+    cin>>n;
+    for (int i=0;i<n;i++){
+        string s;
+        cin>>s;
+        for (int j=0;j<n;j++){
+            mp[i][j]=s[j];
+        }
+    }
+    for (int i=0;i<n;i++){
+        for (int j=0;j<n;j++){
+            if (mp[i][j]=='g'){
+                for (int k=0;k<8;k++){
+                    dfs(i,j,1,k);
+                }
+            }
+        }
+    }
+    cout<<ans;
+} // PROB AB 숨은 글자 찾기

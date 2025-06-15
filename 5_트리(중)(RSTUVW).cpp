@@ -1,5 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
+int n;
+string in,pre;
+void f(int is,int ie,int ps,int pe){
+    if (is>ie || ps>pe) return;
+    int idx;
+    for (int i=0;i<n;i++){
+        if (in[i]==pre[ps]){
+            idx=i;
+            break;
+        }
+    }
+    int lsize=idx-is;
+    f(is,idx-1,ps+1,ps+lsize);
+    f(idx+1,ie,ps+lsize+1,pe);
+    cout<<pre[ps];
+}
+int main()
+{
+    cin>>in;
+    cin>>pre;
+    n=in.length();
+    f(0,n-1,0,n-1);
+} // PROB S 트리의 순회
+
+
+#include<bits/stdc++.h>
+using namespace std;
 int main()
 {
     int n,dp[21]={1};

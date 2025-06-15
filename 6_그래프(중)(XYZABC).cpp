@@ -155,3 +155,64 @@ int main()
     }
     cout<<ans;
 } // PROB AB 숨은 글자 찾기
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,sx,sy,mx,my,fx,fy;
+    int dx[4]={-1,0,0,1},dy[4]={0,-1,1,0};
+    cin>>n;
+    vector<vector<char>> mp(n,vector<char>(n));
+    vector<vector<int>> dist1(n,vector<int>(n,-1));
+    vector<vector<int>> dist2(n,vector<int>(n,-1));
+    queue<pair<int,int>> qu;
+    for (int i=0;i<n;i++){
+        string s;
+        cin>>s;
+        for (int j=0;j<n;j++){
+            mp[i][j]=s[j];
+            if (mp[i][j]=='S'){
+                sx=i;sy=j;
+            }
+            else if (mp[i][j]=='T'){
+                mx=i;my=j;
+            }
+            else if (mp[i][j]=='G'){
+                fx=i;fy=j;
+            }
+        }
+    }
+    dist1[sx][sy]=0;
+    qu.push({sx,sy});
+    while(!qu.empty()){
+        int curx=qu.front().first;
+        int cury=qu.front().second;
+        qu.pop();
+        for (int i=0;i<4;i++){
+            int newx=curx+dx[i];
+            int newy=cury+dy[i];
+            if ((mp[newx][newy]=='T' || mp[newx][newy]=='.') && dist1[newx][newy]==-1){
+                qu.push({newx,newy});
+                dist1[newx][newy]=dist1[curx][cury]+1;
+            }
+        }
+    }
+    dist2[mx][my]=0;
+    qu.push({mx,my});
+    while(!qu.empty()){
+        int curx=qu.front().first;
+        int cury=qu.front().second;
+        qu.pop();
+        for (int i=0;i<4;i++){
+            int newx=curx+dx[i];
+            int newy=cury+dy[i];
+            if ((mp[newx][newy]=='G' || mp[newx][newy]=='.') && dist2[newx][newy]==-1){
+                qu.push({newx,newy});
+                dist2[newx][newy]=dist2[curx][cury]+1;
+            }
+        }
+    }
+    cout<<dist1[mx][my]+dist2[fx][fy];
+} // PROB AC 경곽이의 보물 찾기 

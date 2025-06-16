@@ -63,7 +63,7 @@ using namespace std;
 int main()
 {
     int h,w,ans=0;
-    int sand[101][101],cnt[101][101];
+    int sand[1001][1001],cnt[1001][1001];
     queue<pair<int,int>> qu;
     int dx[8]={-1,-1,-1,0,0,1,1,1};
     int dy[8]={0,-1,1,-1,1,0,-1,1};

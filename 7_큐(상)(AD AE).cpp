@@ -1,5 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
+int n,m,x,y,k;
+int dx[8]={-2,-2,-1,-1,1,1,2,2};
+int dy[8]={-1,1,-2,2,-2,2,-1,1};
+int dist[401][401];
+int main()
+{
+    cin>>n>>m>>x>>y>>k;
+    x--; y--;
+    int minx=max(0,x-2*k), maxx=min(n-1,x+2*k);
+    int miny=max(0,y-2*k), maxy=min(m-1,y+2*k);
+    int h=maxx-minx;
+    int w=maxy-miny;
+    x-=minx; y-=miny;
+    if (k > 0){
+        bool stuck=true;
+        for(int d=0;d<8;d++){
+            int nx=x+dx[d];
+            int ny=y+dy[d];
+            if(nx<0 || nx>h || ny<0 || ny>w) continue;
+            stuck=false;
+            break;
+        }
+        if (stuck){
+            cout<<1LL*n*m<<"\n";
+            return 0;
+        }
+    }
+    for(int i=0;i<=h;i++){
+        for(int j=0;j<=w;j++){
+            dist[i][j]=-1;
+        }
+    }
+    queue<pair<int,int>> qu;
+    qu.push({x,y});
+    dist[x][y]=0;
+    while(!qu.empty()){
+        int cx=qu.front().first, cy=qu.front().second;
+        qu.pop();
+        for(int d=0;d<8;d++){
+            int nx=cx+dx[d], ny=cy+dy[d];
+            if(nx<0||nx>h||ny<0||ny>w) continue;
+            if(dist[nx][ny]!=-1) continue;
+            dist[nx][ny]=dist[cx][cy]+1;
+            qu.push({nx,ny});
+        }
+    }
+    int cnt=0;
+    for(int i=0;i<=h;i++){
+        for(int j=0;j<=w;j++){
+            if(dist[i][j]!=-1 && dist[i][j]<=k && dist[i][j]%2==k%2){
+                cnt++;
+            }
+        }
+    }
+    cout<<1LL*n*m-cnt<<"\n";
+} // PROB AD 나이트의 이동 2
+
+
+#include <bits/stdc++.h>
+using namespace std;
 int main()
 {
     int h,w,ans=0;

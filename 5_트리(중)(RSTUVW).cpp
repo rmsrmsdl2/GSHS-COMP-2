@@ -2,7 +2,7 @@
 using namespace std;
 int n;
 string s;
-vector<string> vec;
+vector<string> vec(1);
 bool isoperator(string s)
 {
     return s=="+"||s=="-"||s=="*"||s=="/";
@@ -34,11 +34,9 @@ long long int ans(int x)
 }
 int main()
 {
-    getline(cin, s);
-    stringstream ss(s);
-    string token;
-    vec.push_back("");
-    while(ss>>token) vec.push_back(token);
+    while(cin>>s){
+        vec.push_back(s);
+    }
     n=vec.size()-1;
     in(1);
     cout<<"\n";

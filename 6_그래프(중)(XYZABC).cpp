@@ -1,5 +1,50 @@
 #include<bits/stdc++.h>
 using namespace std;
+int n,m,k;
+vector<bool> visit(11,false);
+vector<vector<pair<int,int>>> adj(11);
+vector<int> path;
+vector<int> res;
+void dfs(int cur,int sum)
+{
+    if (cur==n){
+        for (auto w:path){
+            res.push_back(sum-w+(w/2));
+        }
+        return;
+    }
+    for (auto i:adj[cur]){
+        int next=i.first;
+        int weight=i.second;
+        if (visit[next]) continue;
+        visit[next]=true;
+        path.push_back(weight);
+        dfs(next,sum+weight);
+        path.pop_back();
+        visit[next]=false;
+    }
+}
+int main()
+{
+    cin>>n>>m>>k;
+    while(m--){
+        int u,v,w;
+        cin>>u>>v>>w;
+        adj[u].push_back({v,w});
+        adj[v].push_back({u,w});
+    }
+    visit[1]=true;
+    dfs(1,0);
+    if (res.size()<k) cout<<"-1\n";
+    else{
+        sort(res.begin(),res.end());
+        cout<<res[k-1]<<"\n";
+    }
+} // PROB X R&E가는길 공사편 2 
+
+
+#include<bits/stdc++.h>
+using namespace std;
 int w,h,cnt=0,ans=0;
 int dx[4]={-1,0,0,1},dy[4]={0,-1,1,0};
 vector<vector<char>> mp(1000,vector<char>(80));

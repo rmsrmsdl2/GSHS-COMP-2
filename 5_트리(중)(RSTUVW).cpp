@@ -1,3 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+string s;
+vector<string> vec;
+bool isoperator(string s)
+{
+    return s=="+"||s=="-"||s=="*"||s=="/";
+}
+void in(int x)
+{
+    if(x>n) return;
+    if(isoperator(vec[x])) cout << "(";
+    in(2*x);
+    cout<<vec[x];
+    in(2*x+1);
+    if(isoperator(vec[x])) cout << ")";
+}
+void post(int x)
+{
+    if(x>n) return;
+    post(2*x);
+    post(2*x+1);
+    cout<<vec[x]<<" ";
+}
+long long int ans(int x)
+{
+    if(!isoperator(vec[x])) return stoll(vec[x]);
+    long long int l=ans(2*x), r=ans(2*x+1);
+    if(vec[x] == "+") return l+r;
+    if(vec[x] == "-") return l-r;
+    if(vec[x] == "*") return l*r;
+    if(vec[x] == "/") return l/r;
+}
+int main()
+{
+    getline(cin, s);
+    stringstream ss(s);
+    string token;
+    vec.push_back("");
+    while(ss>>token) vec.push_back(token);
+    n=vec.size()-1;
+    in(1);
+    cout<<"\n";
+    post(1);
+    cout<<"\n";
+    cout<<ans(1);
+    return 0;
+} // PROB R 수식 트리로 연산하기 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int n;

@@ -212,9 +212,6 @@ int main()
     dist[cur]=0;
     while(!qu.empty()){
         int x=qu.front();
-        if (x==target){
-            break;
-        }
         qu.pop();
         for (int i=0;i<8;i++){
             int newx=(x+d[i]+10000)%10000;

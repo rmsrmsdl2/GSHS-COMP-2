@@ -100,11 +100,10 @@ int main()
     for (int i=1;i<=n-1;i++){
         ll x,y;
         cin>>x>>y;
-        deg[x]++;
-        deg[y]++;
+        deg[min(x,y)]++;
     }
     for (int i=1;i<=n;i++){
-        ans=(ans*fac[(i==1)?deg[i]:deg[i]-1])%mod;
+        ans=(ans*fac[deg[i]])%mod;
     }
     cout<<ans;
 } // PROB Z 트리의 깊이우선탐색의 개수 
